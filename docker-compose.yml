@@ -101,8 +101,8 @@ services:
       guacnetwork_compose:
     restart: always
     volumes:
-    - ./drive:/drive:rw
-    - ./record:/record:rw
+    - /usr/docker/guacamole_data/drive:/drive:rw
+    - /usr/docker/guacamole_data/record:/record:rw
   # postgres
   postgres:
     container_name: postgres_guacamole_compose
@@ -116,8 +116,8 @@ services:
       guacnetwork_compose:
     restart: always
     volumes:
-    - ./init:/docker-entrypoint-initdb.d:z
-    - ./data:/var/lib/postgresql/data:Z
+    - /usr/docker/guacamole_data/init:/docker-entrypoint-initdb.d:z
+    - /usr/docker/guacamole_data/data:/var/lib/postgresql/data:Z
 
   # guacamole
   guacamole:
@@ -150,11 +150,11 @@ services:
    restart: always
    image: nginx
    volumes:
-   - ./nginx/templates:/etc/nginx/templates:ro
-   - ./nginx/ssl/self.cert:/etc/nginx/ssl/self.cert:ro
-   - ./nginx/ssl/self-ssl.key:/etc/nginx/ssl/self-ssl.key:ro
+   - /usr/docker/guacamole_data/nginx/templates:/etc/nginx/templates:ro
+   - /usr/docker/guacamole_data/nginx/ssl/self.cert:/etc/nginx/ssl/self.cert:ro
+   - /usr/docker/guacamole_data/nginx/ssl/self-ssl.key:/etc/nginx/ssl/self-ssl.key:ro
    ports:
-   - 8443:443
+   - 27022:443
    links:
    - guacamole
    networks:
