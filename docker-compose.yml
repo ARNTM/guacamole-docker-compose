@@ -89,6 +89,7 @@ version: '2.0'
 # create a network 'guacnetwork_compose' in mode 'bridged'
 networks:
   guacnetwork_compose:
+    name: guacamole
     driver: bridge
 
 # services
